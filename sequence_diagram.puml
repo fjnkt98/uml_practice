@@ -1,0 +1,31 @@
+@startuml SequenceDiagram
+
+title ログインする
+
+actor "Aさん: 会員" as man
+participant ": ログイン画面" as login_page
+control ": ログイン処理" as login_process
+collections ": 会員リスト" as member_list
+collections ": Aさんの会員情報" as man_info
+
+note over of man: This is displayed right of Alice.
+
+autonumber
+
+man -> login_page ++ : ログイン情報を入力する\n(会員番号, パスワード)
+
+login_page -> login_process ++ : ログインする\n(会員番号, パスワード)
+
+login_process -> member_list ++ : 会員情報 = 会員情報を取得する(会員番号)
+
+login_process -> man_info ++ : 認証結果 = 認証する(パスワード)
+
+alt "認証結果 = OK"
+login_process --> login_page ++ : 会員サービス画面へ遷移する
+
+else "認証結果 = NG"
+login_process --> login_page ++ : 認証エラー画面へ遷移する
+
+end
+
+@enduml
