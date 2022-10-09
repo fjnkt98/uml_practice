@@ -1,0 +1,24 @@
+{
+  "UML": {
+    "scope": "plantuml",
+    "description": "UML",
+    "prefix": "uml",
+    "body": ["@startuml $1", "", "@enduml"]
+  },
+  "E-R Diagram": {
+    "scope": "plantuml",
+    "description": "E-R Diagram",
+    "prefix": "e-r",
+    "body": [
+      "@startuml $1",
+      "",
+      "skinparam linetype ortho",
+      "",
+      "entity \"$2\" as $3 {",
+      "",
+      "}",
+      "",
+      "@enduml"
+    ]
+  }
+}

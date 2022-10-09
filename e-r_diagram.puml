@@ -1,0 +1,87 @@
+' hide circle
+skinparam linetype ortho
+skinparam dpi 200
+
+@startuml E-R Diagram
+
+entity "Entity01" as e01 {
+    * e1_id: number <<generated>>
+    --
+    * name: text
+    description: text
+}
+
+entity "Entity02" as e02 {
+    * e2_id: number <<generated>>
+    --
+    * e1_id: number <<FK>>
+    other_details: text
+}
+
+entity "Entity03" as e03 {
+    * e3_id: number <<generated>>
+    --
+    * e1_id: number <<FK>>
+    other_details: text
+}
+
+
+e01 ||..o{ e02
+e01 |o..o{ e03
+
+@enduml
+
+@startuml Twitter
+
+skinparam linetype ortho
+
+entity "User" as user {
+    * user_id: number <<generated>>
+    --
+    * name: string
+    * email: string
+    * password: string
+}
+
+entity "Tweet" as tweet {
+    * tweet_id: number <<generated>>
+    --
+    * title: text
+    * text: text
+    * image: string
+    * user_id: number <<FK>>
+}
+
+entity "UserProfile" as profile {
+    * profile_id: number <<generated>>
+    --
+    address: string
+    tel: string
+    * user_id: number <<FK>>
+}
+
+entity "Image" as image {
+    * image_id: number <<generated>>
+    --
+    * url: string
+    * tweet_id: number <<FK>>
+}
+
+note right of image: Up to 4 images can be attached per tweet.
+
+note top of user
+    日本語
+endnote
+
+note left of image::url
+    有効なURLのみ設定可能
+endnote
+note left of image::tweet_id
+    hoge
+endnote
+
+user ||..o{ tweet
+user ||..|| profile
+tweet ||..o{ image
+
+@enduml
