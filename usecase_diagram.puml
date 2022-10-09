@@ -1,0 +1,29 @@
+@startuml UseCase
+
+left to right direction
+
+actor 預金者 as depositor
+actor 振込依頼者 as remittee
+actor 他銀行 as other_bank
+
+package ATM {
+    usecase 預金を引き出す as withdraw
+    usecase 預金を預ける as deposit
+    usecase 通帳を記入する as entry
+
+    usecase 暗証番号を入力する as authorize
+    usecase 口座振込を依頼する as ask
+}
+
+depositor --> withdraw
+depositor --> deposit
+depositor --> entry
+
+remittee --> ask
+
+withdraw ..> authorize: <<include>>
+ask ..> authorize: <<include>>
+other_bank --> ask
+
+
+@enduml
